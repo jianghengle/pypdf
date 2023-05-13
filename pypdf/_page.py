@@ -800,17 +800,6 @@ class PageObject(DictionaryObject):
                 new_resources[NameObject(res)] = new
                 rename.update(newrename)
 
-        # Combine /ProcSet sets, making sure there's a consistent order
-        new_resources[NameObject(RES.PROC_SET)] = ArrayObject(
-            sorted(
-                set(
-                    original_resources.get(RES.PROC_SET, ArrayObject()).get_object()
-                ).union(
-                    set(page2resources.get(RES.PROC_SET, ArrayObject()).get_object())
-                )
-            )
-        )
-
         new_content_array = ArrayObject()
 
         original_content = self.get_contents()
